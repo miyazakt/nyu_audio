@@ -12,12 +12,20 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Node from '../canvas/node'
+
 export default {
   props: {
     name: String,
-    image: String
+    image: String,
+    audioContext: AudioContext,
+    bus: Vue
   },
   computed: {
+    node: function () {
+      return new Node(20, 20)
+    },
     imagePath: function () {
       return '/static/img/' + this.image
     }
