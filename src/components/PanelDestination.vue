@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     handleConnect: function (fromNode) {
-      fromNode.getProperty().osci.connect(this.audioContext.destination)
+      fromNode.connect(this.audioContext.destination)
     }
   },
   created: function () {

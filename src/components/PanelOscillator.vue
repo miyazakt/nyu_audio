@@ -13,7 +13,7 @@ export default {
   created: function () {
     const osci = this.audioContext.createOscillator()
     osci.start(0)
-    this.node.setProperty({ osci: osci })
+    this.node.setAudioNode(osci)
   },
   methods: {
     handleClick: function (event) {

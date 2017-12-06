@@ -4,7 +4,16 @@ export default class {
     this.y = y
     this.width = 50
     this.height = 50
+    this.audioNode = null
     this.properties = {}
+  }
+
+  setAudioNode (audioNode) {
+    this.audioNode = audioNode
+  }
+
+  getAudioNode () {
+    return this.audioNode
   }
 
   setProperty (props) {
@@ -13,6 +22,10 @@ export default class {
 
   getProperty () {
     return this.properties
+  }
+
+  connect (targetAudioNode) {
+    this.audioNode.connect(targetAudioNode)
   }
 
   clone () {
