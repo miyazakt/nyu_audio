@@ -12,10 +12,12 @@ export default {
   },
   methods: {
     handleConnect: function (fromNode) {
-      fromNode.connect(this.audioContext.destination)
+      this.$store.dispatch('connect', { from: fromNode, to: this.node })
     }
   },
   created: function () {
+    this.node.setAudioNode(this.audioContext.destination)
+    this.$store.dispatch('registerNode', { panel: this, node: this.node })
     this.bus.$on('connected', this.handleConnect)
   }
 }

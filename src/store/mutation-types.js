@@ -1,0 +1,2 @@
+export const CONNECT_NODE = 'CONNECT_NODE'
+export const REGISTER_NODE = 'REGISTER_NODE'

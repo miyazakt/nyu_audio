@@ -13,7 +13,7 @@
 
 <script>
 import Vue from 'vue'
-import Node from '../canvas/node'
+import Node from '../core/node'
 
 export default {
   props: {
@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     node: function () {
-      return new Node(20, 20)
+      return new Node()
     },
     imagePath: function () {
       return '/static/img/' + this.image

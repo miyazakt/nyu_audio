@@ -1,10 +1,9 @@
 export default class {
-  constructor (x, y) {
-    this.x = x
-    this.y = y
-    this.width = 50
-    this.height = 50
+  constructor (audioNode) {
     this.audioNode = null
+    if (audioNode !== undefined) {
+      this.audioNode = audioNode
+    }
     this.properties = {}
   }
 
@@ -24,8 +23,8 @@ export default class {
     return this.properties
   }
 
-  connect (targetAudioNode) {
-    this.audioNode.connect(targetAudioNode)
+  connect (targetNode) {
+    this.audioNode.connect(targetNode.getAudioNode())
   }
 
   clone () {
