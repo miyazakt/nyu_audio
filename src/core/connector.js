@@ -7,4 +7,8 @@ export default class {
   connect () {
     this.from.connect(this.to)
   }
+
+  disconnect () {
+    this.from.disconnect(this.to)
+  }
 }
