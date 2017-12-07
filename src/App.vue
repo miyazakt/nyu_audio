@@ -4,21 +4,18 @@
       name="Icon"
       image="icon_rss.svg"
       :isSelectMode="isSelectMode"
-      :audioContext="audioContext"
       :bus="bus"
       @click="this.onClick" ></panel>
     <panel-oscillator
       name="Icon"
       image="icon_rss.svg"
       :isSelectMode="isSelectMode"
-      :audioContext="audioContext"
       :bus="bus"
       ></panel-oscillator>
     <panel-destination
       name="Icon"
       image="icon_rss.svg"
       :isSelectMode="isSelectMode"
-      :audioContext="audioContext"
       :bus="bus"
       ></panel-destination>
   </div>
@@ -38,7 +35,6 @@ export default {
   data: function () {
     return {
       isSelectMode: false,
-      audioContext: new AudioContext(),
       bus: new Vue()
     }
   },
@@ -51,6 +47,9 @@ export default {
     'panel': Panel,
     'panel-oscillator': PanelOscillator,
     'panel-destination': PanelDestination
+  },
+  created: function () {
+    this.$store.dispatch('saveAudioContext', new AudioContext())
   }
 }
 </script>
