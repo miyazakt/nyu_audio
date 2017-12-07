@@ -13,7 +13,8 @@
       image="icon_rss.svg"
       ></panel-destination>
       <button @click="selectClick">選択{{ isSelectMode ? '解除' : '' }}</button>
-    <button @click="doneClick">接続</button>
+    <button @click="connectClick">connect</button>
+    <button @click="disconnectClick">disconnect</button>
   </div>
 </template>
 <script>
@@ -35,8 +36,11 @@ export default {
         this.$store.dispatch('startSelect')
       }
     },
-    doneClick: function (event) {
-      this.$store.dispatch('doneSelect')
+    connectClick: function (event) {
+      this.$store.dispatch('doneSelect', { type: 'connect' })
+    },
+    disconnectClick: function (event) {
+      this.$store.dispatch('doneSelect', { type: 'disconnect' })
     }
   },
   components: {

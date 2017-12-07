@@ -23,11 +23,15 @@ const actions = {
   stopSelect ({ commit }) {
     commit(types.SELECT_STOP)
   },
-  doneSelect ({ commit, state }) {
+  doneSelect ({ commit, state }, payload) {
     commit(types.SELECT_STOP)
     const selectors = state.selectors
     for (let i = 1; i < selectors.length; i++) {
-      commit(types.CONNECT_NODE, { from: selectors[i - 1], to: selectors[i] })
+      if (payload.type === 'connect') {
+        commit(types.CONNECT_NODE, { from: selectors[i - 1], to: selectors[i] })
+      } else if (payload.type === 'disconnect') {
+        commit(types.DISCONNECT_NODE, { from: selectors[i - 1], to: selectors[i] })
+      }
     }
     commit(types.CLEAR_SELECTOR)
   },

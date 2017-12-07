@@ -21,6 +21,9 @@ const getters = {
 const actions = {
   connect ({ commit }, connectObject) {
     commit(types.CONNECT_NODE, connectObject)
+  },
+  disconnect ({ commit }, connectObject) {
+    commit(types.DISCONNECT_NODE, connectObject)
   }
 }
 
@@ -31,6 +34,18 @@ const mutations = {
       const con = new Connector(connectObject.from, connectObject.to)
       con.connect()
       state.all.push(con)
+    }
+  },
+  [types.DISCONNECT_NODE] (state, connectObject) {
+    const connector = state.all.find(c => c.from === connectObject.from && c.to === connectObject.to)
+    connector.disconnect()
+    const index = state.all.indexOf(connector)
+    if (index >= 0) {
+      state.all.some((n, i) => {
+        if (n === connector) {
+          state.all.splice(i, 1)
+        }
+      })
     }
   }
 }

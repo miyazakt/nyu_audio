@@ -27,6 +27,10 @@ export default class {
     this.audioNode.connect(targetNode.getAudioNode())
   }
 
+  disconnect (targetNode) {
+    this.audioNode.disconnect(targetNode.getAudioNode())
+  }
+
   clone () {
     return Object.assign(Object.create(Object.getPropertyOf(this), this))
   }
