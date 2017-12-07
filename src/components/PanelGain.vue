@@ -9,7 +9,9 @@ export default {
     image: String
   },
   created: function () {
-    this.node.setAudioNode(this.audioContext.destination)
+    const gainNode = this.audioContext.createGain()
+    gainNode.gain.value = 0.5
+    this.node.setAudioNode(gainNode)
     this.$store.dispatch('registerNode', { panel: this, node: this.node })
   }
 }

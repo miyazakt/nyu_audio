@@ -4,6 +4,10 @@
       name="Icon"
       image="icon_rss.svg"
       ></panel-oscillator>
+    <panel-gain
+      name="Icon"
+      image="icon_rss.svg"
+      ></panel-gain>
     <panel-destination
       name="Icon"
       image="icon_rss.svg"
@@ -16,6 +20,7 @@
 import { mapGetters } from 'vuex'
 import Panel from './Panel'
 import PanelOscillator from './PanelOscillator'
+import PanelGain from './PanelGain'
 import PanelDestination from './PanelDestination'
 
 export default {
@@ -37,6 +42,7 @@ export default {
   components: {
     'panel': Panel,
     'panel-oscillator': PanelOscillator,
+    'panel-gain': PanelGain,
     'panel-destination': PanelDestination
   }
 }
