@@ -1,3 +1,7 @@
 export const CONNECT_NODE = 'CONNECT_NODE'
 export const REGISTER_NODE = 'REGISTER_NODE'
 export const SAVE_AUDIOCONTEXT = 'SAVE_AUDIOCONTEXT'
+export const SELECT = 'SELECT'
+export const CLEAR_SELECTOR = 'CLEAR_SELECTOR'
+export const SELECT_START = 'SELECT_START'
+export const SELECT_STOP = 'SELECT_STOP'

@@ -2,25 +2,20 @@
   <div 
     class="panel"
     draggable="true"
-    @click="handleClick"
-    @dragstart="handleDragStart"
-    @dragend="handleDragEnd"
-    @dragenter="handleDragEnter" >
+    @click="handleClick">
     <span class="title">{{ this.name }}</span>
     <img :src="imagePath" />
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Node from '../core/node'
 
 export default {
   props: {
     name: String,
-    image: String,
-    bus: Vue
+    image: String
   },
   computed: {
     node: function () {
@@ -33,16 +28,7 @@ export default {
   },
   methods: {
     handleClick: function (event) {
-      this.$emit('click', event)
-    },
-    handleDragStart: function (event) {
-      this.$emit('dragstart', event)
-    },
-    handleDragEnd: function (event) {
-      this.$emit('dragend', event)
-    },
-    handleDragEnter: function (event) {
-      this.$emit('dragenter', event)
+      this.$store.dispatch('select', this.node)
     }
   }
 }

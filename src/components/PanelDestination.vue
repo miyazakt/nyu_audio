@@ -6,8 +6,7 @@ export default {
   mixins: [Vue.extend(Panel)],
   props: {
     name: String,
-    image: String,
-    bus: Vue
+    image: String
   },
   methods: {
     handleConnect: function (fromNode) {
@@ -17,7 +16,6 @@ export default {
   created: function () {
     this.node.setAudioNode(this.audioContext.destination)
     this.$store.dispatch('registerNode', { panel: this, node: this.node })
-    this.bus.$on('connected', this.handleConnect)
   }
 }
 </script>

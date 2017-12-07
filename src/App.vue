@@ -1,52 +1,21 @@
 <template>
   <div id="app">
-    <panel
-      name="Icon"
-      image="icon_rss.svg"
-      :isSelectMode="isSelectMode"
-      :bus="bus"
-      @click="this.onClick" ></panel>
-    <panel-oscillator
-      name="Icon"
-      image="icon_rss.svg"
-      :isSelectMode="isSelectMode"
-      :bus="bus"
-      ></panel-oscillator>
-    <panel-destination
-      name="Icon"
-      image="icon_rss.svg"
-      :isSelectMode="isSelectMode"
-      :bus="bus"
-      ></panel-destination>
+    <board
+       ></board>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import CanvasBoard from './components/CanvasBoard'
-import Panel from './components/Panel'
-import PanelOscillator from './components/PanelOscillator'
-import PanelDestination from './components/PanelDestination'
+import Board from './components/Board'
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext
 
 export default {
   name: 'app',
-  data: function () {
-    return {
-      isSelectMode: false,
-      bus: new Vue()
-    }
-  },
-  methods: {
-    onClick: function (event) {
-    }
-  },
   components: {
-    'canvas-board': CanvasBoard,
-    'panel': Panel,
-    'panel-oscillator': PanelOscillator,
-    'panel-destination': PanelDestination
+    'board': Board,
+    'canvas-board': CanvasBoard
   },
   created: function () {
     this.$store.dispatch('saveAudioContext', new AudioContext())
