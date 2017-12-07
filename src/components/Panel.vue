@@ -28,7 +28,9 @@ export default {
   },
   methods: {
     handleClick: function (event) {
-      this.$store.dispatch('select', this.node)
+      if (this.$store.getters.isSelectMode) {
+        this.$store.dispatch('select', this.node)
+      }
     }
   }
 }

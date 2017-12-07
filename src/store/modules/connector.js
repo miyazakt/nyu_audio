@@ -38,15 +38,16 @@ const mutations = {
   },
   [types.DISCONNECT_NODE] (state, connectObject) {
     const connector = state.all.find(c => c.from === connectObject.from && c.to === connectObject.to)
+    if (!connector) return
     connector.disconnect()
+
     const index = state.all.indexOf(connector)
-    if (index >= 0) {
-      state.all.some((n, i) => {
-        if (n === connector) {
-          state.all.splice(i, 1)
-        }
-      })
-    }
+    if (index < 0) return
+    state.all.some((n, i) => {
+      if (n === connector) {
+        state.all.splice(i, 1)
+      }
+    })
   }
 }
 
