@@ -44,7 +44,10 @@ const actions = {
 const mutations = {
   [types.SELECT] (state, node) {
     if (state.isSelectMode) {
-      state.selectors.push(node)
+      const record = state.selectors.find(n => n === node)
+      if (!record) {
+        state.selectors.push(node)
+      }
     }
   },
   [types.CLEAR_SELECTOR] (state) {
