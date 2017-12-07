@@ -3,31 +3,32 @@
     <panel-oscillator
       name="Icon"
       image="icon_rss.svg"
-      :isSelectMode="isSelectMode"
       ></panel-oscillator>
     <panel-destination
       name="Icon"
       image="icon_rss.svg"
-      :isSelectMode="isSelectMode"
       ></panel-destination>
-    <button @click="selectClick">選択</button>
+      <button @click="selectClick">選択{{ isSelectMode ? '解除' : '' }}</button>
     <button @click="doneClick">接続</button>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import Panel from './Panel'
 import PanelOscillator from './PanelOscillator'
 import PanelDestination from './PanelDestination'
 
 export default {
-  data: function () {
-    return {
-      isSelectMode: false
-    }
+  computed: {
+    ...mapGetters({ isSelectMode: 'isSelectMode' })
   },
   methods: {
     selectClick: function (event) {
-      this.$store.dispatch('startSelect')
+      if (this.$store.getters.isSelectMode) {
+        this.$store.dispatch('cancelSelect')
+      } else {
+        this.$store.dispatch('startSelect')
+      }
     },
     doneClick: function (event) {
       this.$store.dispatch('doneSelect')

@@ -1,13 +1,13 @@
 import * as types from '../mutation-types'
 
 const state = {
-  isSelected: false,
+  isSelectMode: false,
   selectors: []
 }
 
 const getters = {
   selectors: state => state.selectors,
-  isSelected: state => state.isSelected
+  isSelectMode: state => state.isSelectMode
 }
 
 const actions = {
@@ -30,12 +30,16 @@ const actions = {
       commit(types.CONNECT_NODE, { from: selectors[i - 1], to: selectors[i] })
     }
     commit(types.CLEAR_SELECTOR)
+  },
+  cancelSelect ({ commit }) {
+    commit(types.SELECT_STOP)
+    commit(types.CLEAR_SELECTOR)
   }
 }
 
 const mutations = {
   [types.SELECT] (state, node) {
-    if (state.isSelected) {
+    if (state.isSelectMode) {
       state.selectors.push(node)
     }
   },
@@ -43,10 +47,10 @@ const mutations = {
     state.selectors = []
   },
   [types.SELECT_START] (state) {
-    state.isSelected = true
+    state.isSelectMode = true
   },
   [types.SELECT_STOP] (state) {
-    state.isSelected = false
+    state.isSelectMode = false
   }
 }
 
