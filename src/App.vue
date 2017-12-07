@@ -23,7 +23,7 @@
 
 <script>
 import Vue from 'vue'
-import Board from './components/Board'
+import CanvasBoard from './components/CanvasBoard'
 import Panel from './components/Panel'
 import PanelOscillator from './components/PanelOscillator'
 import PanelDestination from './components/PanelDestination'
@@ -43,7 +43,7 @@ export default {
     }
   },
   components: {
-    'board': Board,
+    'canvas-board': CanvasBoard,
     'panel': Panel,
     'panel-oscillator': PanelOscillator,
     'panel-destination': PanelDestination
