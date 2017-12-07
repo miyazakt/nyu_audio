@@ -7,7 +7,6 @@ export default {
   props: {
     name: String,
     image: String,
-    audioContext: AudioContext,
     bus: Vue
   },
   created: function () {

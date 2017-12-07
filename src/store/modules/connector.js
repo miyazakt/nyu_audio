@@ -26,7 +26,7 @@ const actions = {
 
 const mutations = {
   [types.CONNECT_NODE] (state, connectObject) {
-    const record = state.all.find(c => c.from === connectObject.from && c.to === connectObject.from)
+    const record = state.all.find(c => c.from === connectObject.from && c.to === connectObject.to)
     if (!record) {
       const con = new Connector(connectObject.from, connectObject.to)
       con.connect()

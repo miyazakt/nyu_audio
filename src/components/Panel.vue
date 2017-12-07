@@ -13,13 +13,13 @@
 
 <script>
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import Node from '../core/node'
 
 export default {
   props: {
     name: String,
     image: String,
-    audioContext: AudioContext,
     bus: Vue
   },
   computed: {
@@ -28,7 +28,8 @@ export default {
     },
     imagePath: function () {
       return '/static/img/' + this.image
-    }
+    },
+    ...mapGetters({ audioContext: 'audiocontext' })
   },
   methods: {
     handleClick: function (event) {

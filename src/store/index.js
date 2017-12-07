@@ -4,6 +4,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import connector from './modules/connector'
 import nodes from './modules/nodes'
+import audiocontext from './modules/audiocontext'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
   getters,
   modules: {
     connector,
-    nodes
+    nodes,
+    audiocontext
   }
 })
