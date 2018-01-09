@@ -1,17 +1,17 @@
 <template>
   <div class="board">
-    <panel-oscillator
-      name="Icon"
-      image="icon_rss.svg"
-      ></panel-oscillator>
-    <panel-gain
-      name="Icon"
-      image="icon_rss.svg"
-      ></panel-gain>
-    <panel-destination
-      name="Icon"
-      image="icon_rss.svg"
-      ></panel-destination>
+    <panel type="oscillator"
+           name="Oscillator"
+           image="oscillator.png"
+           ></panel>
+    <panel type="gain"
+           name="gain"
+           image="icon_rss.svg"
+           ></panel>
+    <panel type="destination"
+           name="Destination"
+           image="icon_rss.svg"
+           ></panel>
       <button @click="selectClick">選択{{ isSelectMode ? '解除' : '' }}</button>
     <button @click="connectClick">connect</button>
     <button @click="disconnectClick">disconnect</button>
@@ -19,14 +19,20 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import Panel from './Panel'
-import PanelOscillator from './PanelOscillator'
-import PanelGain from './PanelGain'
-import PanelDestination from './PanelDestination'
+import panel from './Panel'
 
 export default {
   computed: {
     ...mapGetters({ isSelectMode: 'isSelectMode' })
+  },
+  data: function () {
+    return {
+      audioNodes: [
+        { type: 'oscillator', name: 'Oscillator', image: 'oscillator.png' },
+        { type: 'gain', name: 'gain', image: 'icon_rss.svg' },
+        { type: 'destination', name: 'destination', image: 'icon_rss.svg' }
+      ]
+    }
   },
   methods: {
     selectClick: function (event) {
@@ -44,10 +50,7 @@ export default {
     }
   },
   components: {
-    'panel': Panel,
-    'panel-oscillator': PanelOscillator,
-    'panel-gain': PanelGain,
-    'panel-destination': PanelDestination
+    'panel': panel
   }
 }
 </script>
