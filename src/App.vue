@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import CanvasBoard from './components/CanvasBoard'
 import Board from './components/Board'
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext
@@ -15,7 +14,6 @@ export default {
   name: 'app',
   components: {
     'board': Board,
-    'canvas-board': CanvasBoard
   },
   created: function () {
     this.$store.dispatch('saveAudioContext', new AudioContext())
