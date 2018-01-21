@@ -31,7 +31,7 @@ export default {
       audioNodes: [
         { type: 'oscillator', name: 'Oscillator', image: 'oscillator.png', parameters: {}},
         { type: 'gain', name: 'gain', image: 'icon_rss.svg', parameters: {}},
-        { type: 'destination', name: 'destination', image: 'icon_rss.svg', parameters: {}}
+        { type: 'destination', name: 'destination', image: 'speaker.png', parameters: {}}
       ]
     }
   },
