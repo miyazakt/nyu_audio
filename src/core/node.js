@@ -4,7 +4,14 @@ export default class {
     if (audioNode !== undefined) {
       this.audioNode = audioNode
     }
+    this.name = ''
     this.properties = {}
+  }
+  setName (name) {
+    this.name = name
+  }
+  getName () {
+    return this.name
   }
 
   setAudioNode (audioNode) {

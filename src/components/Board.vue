@@ -1,36 +1,37 @@
 <template>
   <div class="board">
-    <panel type="oscillator"
-           name="Oscillator"
-           image="oscillator.png"
-           ></panel>
-    <panel type="gain"
-           name="gain"
-           image="icon_rss.svg"
-           ></panel>
-    <panel type="destination"
-           name="Destination"
-           image="icon_rss.svg"
-           ></panel>
+    <div v-for="node in audioNodes">
+      <panel :type="node.type"
+             :name="node.name"
+             :image="node.image"
+             :parameters="node.parameters"
+             ></panel>
+    </div>
       <button @click="selectClick">選択{{ isSelectMode ? '解除' : '' }}</button>
     <button @click="connectClick">connect</button>
     <button @click="disconnectClick">disconnect</button>
+    <div v-for="connector in allConnectors">
+      <connection :from-object="connector.from"
+                  :to-object="connector.to"
+                  ></connection>
+    </div>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import panel from './Panel'
+import connection from './Connection'
 
 export default {
   computed: {
-    ...mapGetters({ isSelectMode: 'isSelectMode' })
+    ...mapGetters({ isSelectMode: 'isSelectMode', allConnectors: 'allConnectors' })
   },
   data: function () {
     return {
       audioNodes: [
-        { type: 'oscillator', name: 'Oscillator', image: 'oscillator.png' },
-        { type: 'gain', name: 'gain', image: 'icon_rss.svg' },
-        { type: 'destination', name: 'destination', image: 'icon_rss.svg' }
+        { type: 'oscillator', name: 'Oscillator', image: 'oscillator.png', parameters: {}},
+        { type: 'gain', name: 'gain', image: 'icon_rss.svg', parameters: {}},
+        { type: 'destination', name: 'destination', image: 'icon_rss.svg', parameters: {}}
       ]
     }
   },
@@ -50,7 +51,8 @@ export default {
     }
   },
   components: {
-    'panel': panel
+    'panel': panel,
+    'connection': connection
   }
 }
 </script>
