@@ -21,7 +21,9 @@
     },
     computed: {
       node: function () {
-        return new Node()
+        const node = new Node()
+        node.setName(this.name)
+        return node
       },
       imagePath: function () {
         return '/static/img/' + this.image

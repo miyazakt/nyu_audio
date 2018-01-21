@@ -10,15 +10,21 @@
       <button @click="selectClick">選択{{ isSelectMode ? '解除' : '' }}</button>
     <button @click="connectClick">connect</button>
     <button @click="disconnectClick">disconnect</button>
+    <div v-for="connector in allConnectors">
+      <connection :from-object="connector.from"
+                  :to-object="connector.to"
+                  ></connection>
+    </div>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import panel from './Panel'
+import connection from './Connection'
 
 export default {
   computed: {
-    ...mapGetters({ isSelectMode: 'isSelectMode' })
+    ...mapGetters({ isSelectMode: 'isSelectMode', allConnectors: 'allConnectors' })
   },
   data: function () {
     return {
@@ -45,7 +51,8 @@ export default {
     }
   },
   components: {
-    'panel': panel
+    'panel': panel,
+    'connection': connection
   }
 }
 </script>
