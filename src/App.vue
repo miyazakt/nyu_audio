@@ -13,7 +13,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext
 export default {
   name: 'app',
   components: {
-    'board': Board,
+    'board': Board
   },
   created: function () {
     this.$store.dispatch('saveAudioContext', new AudioContext())
