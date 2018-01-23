@@ -18,8 +18,6 @@ const actions = {
 }
 
 const mutations = {
-  [types.CONNECT_NODE] (state) {
-  },
   [types.REGISTER_NODE] (state, node) {
     const record = state.all.find(n => n === node)
     if (!record) {
