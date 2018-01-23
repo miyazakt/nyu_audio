@@ -2,7 +2,7 @@
   <div class="board">
     <table class="viewTable">
       <tbody>
-        <tr v-for="(row, y) in this.viewTable">
+        <tr v-for="(row, y) in this.table">
           <td v-for="(node, x) in row" v-if="node !== null">
             <panel :type="node.type"
                    :name="node.name"
@@ -33,7 +33,17 @@ import connection from './Connection'
 
 export default {
   computed: {
-    ...mapGetters({ isSelectMode: 'isSelectMode', allConnectors: 'allConnectors' })
+    ...mapGetters({ isSelectMode: 'isSelectMode', allConnectors: 'allConnectors' }),
+    table: function () {
+      const ret = []
+      for (let i = 0; i < this.y; i++) {
+        ret.push([])
+        for (let j = 0; j < this.x; j++) {
+          ret[i].push(this.viewTable[i * this.x + j])
+        }
+      }
+      return ret
+    }
   },
   data: function () {
     return {
@@ -43,15 +53,12 @@ export default {
     }
   },
   created: function () {
-    for (let i = 0; i < this.y; i++) {
-      this.viewTable[i] = []
-      for (let j = 0; j < this.x; j++) {
-        this.viewTable[i][j] = null
-      }
+    for (let i = 0; i < this.x * this.y; i++) {
+      this.viewTable.push(null)
     }
-    this.viewTable[2][0] = { type: 'oscillator', name: 'Oscillator', image: 'oscillator.png', parameters: {}}
-    this.viewTable[2][3] = { type: 'gain', name: 'gain', image: 'icon_rss.svg', parameters: {}}
-    this.viewTable[2][6] = { type: 'destination', name: 'destination', image: 'speaker.png', parameters: {}}
+    this.viewTable.splice(2 * this.x + 0, 1, { type: 'oscillator', name: 'Oscillator', image: 'oscillator.png', parameters: {}})
+    this.viewTable.splice(2 * this.x + 3, 1, { type: 'gain', name: 'gain', image: 'icon_rss.svg', parameters: {}})
+    this.viewTable.splice(2 * this.x + 6, 1, { type: 'destination', name: 'destination', image: 'speaker.png', parameters: {}})
   },
   methods: {
     selectClick: function (event) {
@@ -68,7 +75,7 @@ export default {
       this.$store.dispatch('doneSelect', { type: 'disconnect' })
     },
     cellClick: function (x, y) {
-      this.viewTable[y][x] = { type: 'gain', name: 'gain', image: 'icon_rss.svg', parameters: {}}
+      this.viewTable.splice(y * this.x + x, 1, { type: 'gain', name: 'gain', image: 'icon_rss.svg', parameters: {}})
     }
   },
   components: {
