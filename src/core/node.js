@@ -1,5 +1,6 @@
 export default class {
   constructor (audioNode) {
+    this.type = ''
     this.audioNode = null
     if (audioNode !== undefined) {
       this.audioNode = audioNode
@@ -10,8 +11,17 @@ export default class {
   setName (name) {
     this.name = name
   }
+
   getName () {
     return this.name
+  }
+
+  getType () {
+    return this.type
+  }
+
+  setType (type) {
+    this.type = type
   }
 
   setAudioNode (audioNode) {

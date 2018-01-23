@@ -20,10 +20,10 @@ const actions = {
 const mutations = {
   [types.CONNECT_NODE] (state) {
   },
-  [types.REGISTER_NODE] (state, { panel, node }) {
-    const record = state.all.find(n => n.panel === panel && n.node === node)
+  [types.REGISTER_NODE] (state, node) {
+    const record = state.all.find(n => n === node)
     if (!record) {
-      state.all.push({ panel: panel, node: node })
+      state.all.push(node)
     }
   }
 }
