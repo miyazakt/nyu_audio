@@ -38,7 +38,9 @@
       }
     },
     created: function () {
-      methods[this.type].apply(this)
+      if (methods[this.type]) {
+        methods[this.type].apply(this)
+      }
     }
   }
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="board">
+    <oscilloscope></oscilloscope>
     <table class="viewTable">
       <tbody>
         <tr v-for="(row, y) in this.table">
@@ -30,6 +31,7 @@
 import { mapGetters } from 'vuex'
 import panel from './Panel'
 import connection from './Connection'
+import oscilloscope from './Oscilloscope'
 
 export default {
   computed: {
@@ -80,7 +82,8 @@ export default {
   },
   components: {
     'panel': panel,
-    'connection': connection
+    'connection': connection,
+    'oscilloscope': oscilloscope
   }
 }
 </script>
